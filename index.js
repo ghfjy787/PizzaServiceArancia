@@ -1,6 +1,6 @@
 "use strict";
 
-var tipiPizze = ["Margherita", "Diavola", "Peperoni"]
+var tipiPizze = ["Margherita", "Diavola", "Peperoni"];
 const express = require("express");
 const bodyParser = require("body-parser");
 
@@ -23,7 +23,11 @@ restService.post("/echo", function(req, res) {
       _speech += " " + tipiPizze[$i];
     }
 
-    
+    return res.json({
+      speech: _speech,
+      displayText: _speech,
+      source: "webhook-echo-sample"
+    });
   }
 
   return res.json({
