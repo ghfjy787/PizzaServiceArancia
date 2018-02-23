@@ -19,7 +19,9 @@ restService.post("/echo", function(req, res) {
   var _speech = req.body.result.fulfillment.speech;
 
   if(context == "ordine") {
-
+    for(var i = 0; i < tipiPizze.length; i++) {
+      _speech += " " + tipiPizze[i];
+    }
 
     return res.json({
       speech: _speech,
