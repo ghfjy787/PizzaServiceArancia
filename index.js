@@ -1,5 +1,6 @@
 "use strict";
 
+var tipiPizze = ["Margherita", "Diavola", "Peperoni"]
 const express = require("express");
 const bodyParser = require("body-parser");
 
@@ -14,17 +15,20 @@ restService.use(
 restService.use(bodyParser.json());
 
 restService.post("/echo", function(req, res) {
-  var speech =
-    req.body.result &&
-    req.body.result.parameters &&
-    req.body.result.parameters.echoText
-      ? req.body.result.parameters.echoText
-      : "Seems like some problem. Speak again.";
-  return res.json({
-    speech: req.body.result.contexts[0].name,
-    displayText: req.body.result.contexts[0].name,
-    source: "webhook-echo-sample"
-  });
+  var context = req.body.result.contexts[0].name;
+  var _speech = req.body.result.fulfillment.speech;
+
+  if(context == "ordine") {
+    for(var i = 0; $i < tipiPizze.length; $i++) {
+      _speech += " " + tipiPizze[$i];
+    }
+
+    return res.json({
+      speech: _speech,
+      displayText: _speech,
+      source: "webhook-echo-sample"
+    });
+  }
 });
 
 restService.listen(process.env.PORT || 8000, function() {
