@@ -20,8 +20,10 @@ restService.post("/echo", function(req, res) {
 
   if(context == "ordine") {
     for(var i = 0; i < tipiPizze.length; i++) {
-      _speech += " " + tipiPizze[i];
+      _speech += " " + tipiPizze[i] + ",";
     }
+
+    _speech += ".";
 
     return res.json({
       speech: _speech,
