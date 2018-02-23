@@ -23,11 +23,7 @@ restService.post("/echo", function(req, res) {
       _speech += " " + tipiPizze[$i];
     }
 
-    return res.json({
-      speech: _speech,
-      displayText: _speech,
-      source: "webhook-echo-sample"
-    });
+    
   }
 
   return res.json({
