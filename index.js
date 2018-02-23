@@ -22,7 +22,7 @@ restService.post("/echo", function(req, res) {
     for(var i = 0; i < tipiPizze.length; i++) {
       _speech += " " + tipiPizze[i];
 
-      if(i != tipiPizze.length)
+      if(i != tipiPizze.length - 1)
         _speech += ",";
     }
 
