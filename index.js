@@ -35,9 +35,7 @@ restService.post("/echo", function(req, res) {
       displayText: _speech,
       source: "webhook-echo-sample"
     });
-  }
-
-  if(context == "ordine-costo") {
+  } else if(context == "ordine-costo") {
     var nomePizza = req.body.result.parameters.nomePizza;
     var _speech = "Il costo della pizza e' di : ";
     var index = tipiPIzze.indexOf(nomePizza);
