@@ -19,7 +19,7 @@ restService.post("/echo", function(req, res) {
   var context = req.body.result.contexts[0].name;
   var _speech = req.body.result.fulfillment.speech;
 
-  if(context == "ordine") {
+  if(context === "ordine") {
 
     for(var i = 0; i < tipiPizze.length; i++) {
       _speech += " " + tipiPizze[i];
@@ -30,7 +30,7 @@ restService.post("/echo", function(req, res) {
 
     _speech += ".";
 
-  } else if(context == "ordine-costo") {
+  } else if(context === "ordine-costo") {
     var nomePizza = req.body.result.parameters.nomePizza;
     var index = tipiPIzze.indexOf(nomePizza);
 
