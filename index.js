@@ -17,9 +17,9 @@ restService.use(bodyParser.json());
 
 restService.post("/echo", function(req, res) {
   var context = req.body.result.contexts[0].name;
+  var _speech = req.body.result.fulfillment.speech;
 
   if(context == "ordine") {
-    var _speech = req.body.result.fulfillment.speech;
 
     for(var i = 0; i < tipiPizze.length; i++) {
       _speech += " " + tipiPizze[i];
@@ -30,14 +30,8 @@ restService.post("/echo", function(req, res) {
 
     _speech += ".";
 
-    return res.json({
-      speech: _speech,
-      displayText: _speech,
-      source: "webhook-echo-sample"
-    });
   } else if(context == "ordine-costo") {
     var nomePizza = req.body.result.parameters.nomePizza;
-    var _speech = "Il costo della pizza e' di : ";
     var index = tipiPIzze.indexOf(nomePizza);
 
     if(index == -1) {
@@ -53,17 +47,11 @@ restService.post("/echo", function(req, res) {
     }
 
     _speech += ".";
-
-    return res.json({
-      speech: _speech,
-      displayText: _speech,
-      source: "webhook-echo-sample"
-    });
   }
-
+  
   return res.json({
-    speech: "error",
-    displayText: "error",
+    speech: _speech,
+    displayText: _speech,
     source: "webhook-echo-sample"
   });
 });
