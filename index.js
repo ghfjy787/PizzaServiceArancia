@@ -19,6 +19,13 @@ restService.post("/echo", function(req, res) {
   var context = req.body.result.contexts[0].name;
   var _speech = req.body.result.fulfillment.speech;
 
+  return res.json({
+    speech: context,
+    displayText: context,
+    source: "webhook-echo-sample"
+  });
+
+
   if(context == "ordine") {
 
     for(var i = 0; i < tipiPizze.length; i++) {
