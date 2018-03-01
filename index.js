@@ -40,15 +40,7 @@ restService.post("/echo", function(req, res) {
   if(context == "ordine-costo") {
     var nomePizza = req.body.result.parameters.nomePizza;
     var _speech = "Il costo della pizza e' di : ";
-    var index = -1;
-
-    for(var i = 0; i < tipiPizze.length; i++) {
-      if(tipiPizze[i] == nomePizza)
-      {
-        index = i;
-        _speech += " " + costoPizze[i];
-      }
-    }
+    var index = tipiPIzze.indexOf(nomePizza);
 
     if(index == -1) {
       _speech = "Mh non abbiamo questo tipo di pizza, ecco la nostra lista : ";
@@ -58,10 +50,11 @@ restService.post("/echo", function(req, res) {
         if(i != tipiPizze.length - 1)
           _speech += ",";
       }
-
-      _speech += ".";
+    } else {
+      _speech += costoPizze[index];
     }
 
+    _speech += ".";
 
     return res.json({
       speech: _speech,
